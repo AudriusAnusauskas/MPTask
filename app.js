@@ -10,7 +10,6 @@ let merchantsDiscounts = {
 let dateStringInput = document.getElementById("date");
 date.addEventListener("input", function () {
   let date = new Date(dateStringInput.value).toISOString().slice(0, 10);
-  console.log(date);
   return date;
 });
 
@@ -56,12 +55,9 @@ button.addEventListener("click", () => {
 
   function dateToString(input) {
     // Parse date
-
     dateString = new Date(Date.parse(check.slice(0, 10)))
       .toISOString()
       .slice(0, 10);
-
-    console.log(dateString);
     return dateString;
   }
 
@@ -103,12 +99,7 @@ button.addEventListener("click", () => {
     });
     return [discount, merchant, transactions, transactionsNum];
   }
-  console.log(merchantDiscount(merchantsDiscounts));
-  console.log(transactions, transactionsNum);
-  console.log(
-    merchantsDiscounts["Omni"][1],
-    merchantsDiscounts["Omni"][1].length
-  );
+  merchantDiscount(merchantsDiscounts);
 
   // Calculate fee
   let transactionFeePercent = "1%";
@@ -123,13 +114,11 @@ button.addEventListener("click", () => {
     let transactionFee;
     let transactionFeePercentDec = parseFloat(transactionFeePercent) / 100; //1%
     let discountDec = parseFloat(discount) / 100; //personal discount
-
     let transactions10 = "0%";
     if (transactionsNum > 10) {
       transactions10 = "20%";
     }
     let transactions10dec = parseFloat(transactions10) / 100;
-    console.log(transactionsNum);
     transactionFee = (
       (amount * transactionFeePercentDec -
         amount * transactionFeePercentDec * discountDec -
@@ -138,14 +127,11 @@ button.addEventListener("click", () => {
           transactions10dec) *
       weekendDiscount
     ).toFixed(2);
-    console.log(typeof transactionFee);
 
     if (dateString === undefined) {
       dateString = "wrong date";
-      console.log(datestring);
     } else if (merchant === undefined) {
       merchant = "wrong merchant";
-      console.log(merchant);
     }
 
     let fee = `${transactionFee}`;
@@ -158,5 +144,5 @@ button.addEventListener("click", () => {
     return [fee, feeOutput];
   }
 
-  console.log(feeCalc(merchantsDiscounts, checkInput));
+  feeCalc(merchantsDiscounts, checkInput);
 });
