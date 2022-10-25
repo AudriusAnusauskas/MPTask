@@ -152,7 +152,7 @@ button.addEventListener("click", () => {
     let feeOutput = `${dateString} ${merchant} ${transactionFee}`;
     document.querySelector(
       "#p2"
-    ).innerText = `The transaction fee for ${merchant} is ${fee}`;
+    ).innerText = `The transaction fee for ${merchant} is €${fee}`;
     document.querySelector("#p3").innerText = `The fee output is:`;
     document.querySelector("#p4").innerText = ` ${feeOutput}`;
     return [fee, feeOutput];
